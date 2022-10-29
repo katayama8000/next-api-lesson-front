@@ -1,11 +1,11 @@
-import type { NextPage } from "next";
-import { useState } from "react";
-import { useRouter } from "next/router";
-import axios from "axios";
-import * as Yup from "yup";
-import { IconDatabase } from "@tabler/icons";
-import { ShieldCheckIcon } from "@heroicons/react/solid";
-import { ExclamationCircleIcon } from "@heroicons/react/outline";
+import type { NextPage } from 'next';
+import { useState } from 'react';
+import { useRouter } from 'next/router';
+import axios from 'axios';
+import * as Yup from 'yup';
+import { IconDatabase } from '@tabler/icons';
+import { ShieldCheckIcon } from '@heroicons/react/solid';
+import { ExclamationCircleIcon } from '@heroicons/react/outline';
 import {
   Anchor,
   TextInput,
@@ -13,27 +13,27 @@ import {
   Group,
   PasswordInput,
   Alert,
-} from "@mantine/core";
-import { useForm, yupResolver } from "@mantine/form";
-import { Layout } from "../components/Layout";
-import { AuthForm } from "../types/index.model";
+} from '@mantine/core';
+import { useForm, yupResolver } from '@mantine/form';
+import { Layout } from '../components/Layout';
+import { AuthForm } from '../types/index.model';
 
 const schema = Yup.object().shape({
-  email: Yup.string().email("Invalid email").required("No email provided"),
+  email: Yup.string().email('Invalid email').required('No email provided'),
   password: Yup.string()
-    .required("No password provided")
-    .min(5, "Password should be min 5 chars"),
+    .required('No password provided')
+    .min(5, 'Password should be min 5 chars'),
 });
 
 const Home: NextPage = () => {
   const { push } = useRouter();
   const [isRegister, setIsRegister] = useState<boolean>(false);
-  const [error, setError] = useState<string>("");
+  const [error, setError] = useState<string>('');
   const form = useForm<AuthForm>({
     validate: yupResolver(schema),
     initialValues: {
-      email: "",
-      password: "",
+      email: '',
+      password: '',
     },
   });
   const handleSubmit = async () => {
@@ -49,7 +49,7 @@ const Home: NextPage = () => {
         password: form.values.password,
       });
       form.reset();
-      push("/dashboard");
+      push('/dashboard');
     } catch (e: any) {
       setError(e.response.data.message);
     }
@@ -75,7 +75,7 @@ const Home: NextPage = () => {
           id="email"
           label="Email*"
           placeholder="example@gmail.com"
-          {...form.getInputProps("email")}
+          {...form.getInputProps('email')}
         />
         <PasswordInput
           mt="md"
@@ -83,7 +83,7 @@ const Home: NextPage = () => {
           placeholder="password"
           label="Password*"
           description="Must be min 5 char"
-          {...form.getInputProps("password")}
+          {...form.getInputProps('password')}
         />
         <Group mt="xl" position="apart">
           <Anchor
@@ -93,11 +93,11 @@ const Home: NextPage = () => {
             className="text-gray-300"
             onClick={() => {
               setIsRegister(!isRegister);
-              setError("");
+              setError('');
             }}
           >
             {isRegister
-              ? "Have an account? Login"
+              ? 'Have an account? Login'
               : "Don't have an account? Register"}
           </Anchor>
           <Button
@@ -105,7 +105,7 @@ const Home: NextPage = () => {
             color="cyan"
             type="submit"
           >
-            {isRegister ? "Register" : "Login"}
+            {isRegister ? 'Register' : 'Login'}
           </Button>
         </Group>
       </form>

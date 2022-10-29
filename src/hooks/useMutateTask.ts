@@ -1,9 +1,9 @@
-import { useRouter } from "next/router";
-import axios from "axios";
-import { useQueryClient, useMutation } from "@tanstack/react-query";
-import { Task } from "@prisma/client";
-import useStore from "../store";
-import { EditedTask } from "../types/index.model";
+import { useRouter } from 'next/router';
+import axios from 'axios';
+import { useQueryClient, useMutation } from '@tanstack/react-query';
+import { Task } from '@prisma/client';
+import useStore from '../store';
+import { EditedTask } from '../types/index.model';
 
 export const useMutateTask = () => {
   const queryClient = useQueryClient();
@@ -11,7 +11,7 @@ export const useMutateTask = () => {
   const reset = useStore((state) => state.resetEditedTask);
 
   const createTaskMutation = useMutation(
-    async (task: Omit<EditedTask, "id">) => {
+    async (task: Omit<EditedTask, 'id'>) => {
       const res = await axios.post(
         `${process.env.NEXT_PUBLIC_API_URL}/todo`,
         task
@@ -20,16 +20,16 @@ export const useMutateTask = () => {
     },
     {
       onSuccess: (res) => {
-        const previousTodos = queryClient.getQueryData<Task[]>(["tasks"]);
+        const previousTodos = queryClient.getQueryData<Task[]>(['tasks']);
         if (previousTodos) {
-          queryClient.setQueryData(["tasks"], [res, ...previousTodos]);
+          queryClient.setQueryData(['tasks'], [res, ...previousTodos]);
         }
         reset();
       },
       onError: (err: any) => {
         reset();
         if (err.response.status === 401 || err.response.status === 403) {
-          push("/");
+          push('/');
         }
       },
     }
@@ -44,10 +44,10 @@ export const useMutateTask = () => {
     },
     {
       onSuccess: (res, variables) => {
-        const previousTodos = queryClient.getQueryData<Task[]>(["tasks"]);
+        const previousTodos = queryClient.getQueryData<Task[]>(['tasks']);
         if (previousTodos) {
           queryClient.setQueryData(
-            ["tasks"],
+            ['tasks'],
             previousTodos.map((task) => (task.id === res.id ? res : task))
           );
         }
@@ -56,7 +56,7 @@ export const useMutateTask = () => {
       onError: (err: any) => {
         reset();
         if (err.response.status === 401 || err.response.status === 403) {
-          push("/");
+          push('/');
         }
       },
     }
@@ -67,10 +67,10 @@ export const useMutateTask = () => {
     },
     {
       onSuccess: (_, variables) => {
-        const previousTodos = queryClient.getQueryData<Task[]>(["tasks"]);
+        const previousTodos = queryClient.getQueryData<Task[]>(['tasks']);
         if (previousTodos) {
           queryClient.setQueryData(
-            ["tasks"],
+            ['tasks'],
             previousTodos.filter((task) => task.id !== variables)
           );
         }
@@ -79,7 +79,7 @@ export const useMutateTask = () => {
       onError: (err: any) => {
         reset();
         if (err.response.status === 401 || err.response.status === 403) {
-          push("/");
+          push('/');
         }
       },
     }

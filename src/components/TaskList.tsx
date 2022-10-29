@@ -1,11 +1,11 @@
-import { useQueryTasks } from "../hooks/useQueryTasks";
-import { List, ThemeIcon, Loader } from "@mantine/core";
-import { IconCircleDashed } from "@tabler/icons";
-import { TaskItem } from "./TaskItem";
+import { useQueryTasks } from '../hooks/useQueryTasks';
+import { List, ThemeIcon, Loader } from '@mantine/core';
+import { IconCircleDashed } from '@tabler/icons';
+import { TaskItem } from './TaskItem';
 
 export const TaskList = () => {
   const { data: tasks, status } = useQueryTasks();
-  if (status === "loading") return <Loader my="lg" color="cyan" />;
+  if (status === 'loading') return <Loader my="lg" color="cyan" />;
   return (
     <List
       my="lg"

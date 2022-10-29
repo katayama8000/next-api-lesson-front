@@ -1,7 +1,7 @@
-import { useRouter } from "next/router";
-import axios from "axios";
-import { useQuery } from "@tanstack/react-query";
-import { Task } from "@prisma/client";
+import { useRouter } from 'next/router';
+import axios from 'axios';
+import { useQuery } from '@tanstack/react-query';
+import { Task } from '@prisma/client';
 
 export const useQueryTasks = () => {
   const { push } = useRouter();
@@ -12,10 +12,10 @@ export const useQueryTasks = () => {
     return data;
   };
   return useQuery<Task[], Error>({
-    queryKey: ["tasks"],
+    queryKey: ['tasks'],
     queryFn: getTasks,
     onError: (err: any) => {
-      if (err.response.status === 401 || err.response.status === 403) push("/");
+      if (err.response.status === 401 || err.response.status === 403) push('/');
     },
   });
 };

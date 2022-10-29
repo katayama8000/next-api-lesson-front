@@ -1,8 +1,8 @@
-import { FormEvent } from "react";
-import { TextInput, Button, Center } from "@mantine/core";
-import { IconDatabase } from "@tabler/icons";
-import useStore from "../store";
-import { useMutateTask } from "../hooks/useMutateTask";
+import { FormEvent } from 'react';
+import { TextInput, Button, Center } from '@mantine/core';
+import { IconDatabase } from '@tabler/icons';
+import useStore from '../store';
+import { useMutateTask } from '../hooks/useMutateTask';
 
 export const TaskForm = () => {
   const { editedTask } = useStore();
@@ -29,25 +29,25 @@ export const TaskForm = () => {
         <TextInput
           mt="md"
           placeholder="title"
-          value={editedTask.title || ""}
+          value={editedTask.title || ''}
           onChange={(e) => update({ ...editedTask, title: e.target.value })}
         />
         <TextInput
           mt="md"
           placeholder="description"
-          value={editedTask.description || ""}
+          value={editedTask.description || ''}
           onChange={(e) =>
             update({ ...editedTask, description: e.target.value })
           }
         />
         <Center mt="lg">
           <Button
-            disabled={editedTask.title === ""}
+            disabled={editedTask.title === ''}
             leftIcon={<IconDatabase size={14} />}
             color="cyan"
             type="submit"
           >
-            {editedTask.id === 0 ? "Create" : "Update"}
+            {editedTask.id === 0 ? 'Create' : 'Update'}
           </Button>
         </Center>
       </form>

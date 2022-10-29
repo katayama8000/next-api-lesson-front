@@ -1,10 +1,10 @@
-import "src/lib/tailwind.css";
-import { useEffect } from "react";
-import type { AppProps } from "next/app";
-import { MantineProvider } from "@mantine/core";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import axios from "axios";
+import 'src/lib/tailwind.css';
+import { useEffect } from 'react';
+import type { AppProps } from 'next/app';
+import { MantineProvider } from '@mantine/core';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import axios from 'axios';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -22,7 +22,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       const { data } = await axios.get(
         `${process.env.NEXT_PUBLIC_API_URL}/auth/csrf`
       );
-      axios.defaults.headers.common["csrf-token"] = data.csrfToken;
+      axios.defaults.headers.common['csrf-token'] = data.csrfToken;
     };
     getCsrfToken();
   }, []);
@@ -32,8 +32,8 @@ function MyApp({ Component, pageProps }: AppProps) {
         withGlobalStyles
         withNormalizeCSS
         theme={{
-          colorScheme: "dark",
-          fontFamily: "Verdana, sans-serif",
+          colorScheme: 'dark',
+          fontFamily: 'Verdana, sans-serif',
         }}
       >
         <Component {...pageProps} />
