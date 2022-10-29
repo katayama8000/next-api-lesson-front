@@ -4,9 +4,9 @@ import axios from "axios";
 import { useQueryClient } from "@tanstack/react-query";
 import { Layout } from "../components/Layout";
 import { LogoutIcon } from "@heroicons/react/solid";
-import { UserInfo } from "../components/userInfo";
 import { TaskForm } from "../components/TaskForm";
 import { TaskList } from "../components/TaskList";
+import { UserInfo } from "@component/UserInfo";
 
 const Dashboard: NextPage = () => {
   const { push } = useRouter();
